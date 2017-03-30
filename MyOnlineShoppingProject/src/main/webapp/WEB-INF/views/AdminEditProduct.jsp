@@ -17,7 +17,7 @@
   
 <div class="container">
 <h1>Edit Product</h1>  
-       <form:form method="POST" action="/Example/editsave">    
+       <form:form method="POST" action="/MyOnlineShoppingProject/editsave">    
         <table >    
         <tr>  
         <td></td>    

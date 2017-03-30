@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -19,6 +21,16 @@ public class User implements Serializable {
 	private String password;
 	private String role;
 	private boolean enabled;
+	@OneToOne
+	@JoinColumn(name="cartId")
+	Cart cart;
+	
+	public Cart getCart() {
+		return cart;
+	}
+	public void setCart(Cart cart) {
+		this.cart = cart;
+	}
 	public String getId() {
 		return id;
 	}

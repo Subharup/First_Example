@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-
 import com.niit.shopping.model.Category;
 import com.niit.shopping.model.Product;
 @Repository("productDao")
@@ -79,5 +78,38 @@ public class ProductDaoImpl implements ProductDao {
 
 		return productList;
 
+	}
+	public void updateProduct(Product product) {
+		// TODO Auto-generated method stub
+		Session session = getSession();
+
+		String s = product.getProductName();
+
+		session.update(product);
+
+		session.flush();
+
+		session.close();
+	}
+
+	public void deleteProduct(int productId) {
+		// TODO Auto-generated method stub
+		
+		Session session = getSession();
+
+		Query query = session.createQuery("from Product where productId = ?");
+		query.setInteger(0, productId);
+
+		Product u=(Product) query.uniqueResult();
+		session.delete(u);
+		session.flush();
+
+		session.close();
+		
+	}	
+	public Product getProductById(int productId) {
+		// TODO Auto-generated method stub
+		Session session = getSession();
+		return (Product) session.get(Product.class, productId);
 	}
 }

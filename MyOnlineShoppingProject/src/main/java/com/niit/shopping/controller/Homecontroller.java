@@ -27,11 +27,6 @@ public ModelAndView index(){
 	 List<Category> list=categoryDao.getAllCatagory();
 	    return new ModelAndView("Home","categoryList",list);  
 }
-@RequestMapping("/Register")
-public ModelAndView Register(){
-	ModelAndView Register=new ModelAndView("Register");
-	return Register;
-}
 
 @RequestMapping("/CartDetails")
 public ModelAndView CartDetails(){

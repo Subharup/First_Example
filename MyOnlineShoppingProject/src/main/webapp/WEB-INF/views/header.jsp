@@ -46,6 +46,11 @@
 
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
+			<li><a href="#" class="btn btn-info btn-lg">
+          <span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart
+        </a>
+      </p> 
+      </li>
 			<c:if test="${pageContext.request.userPrincipal.name == null}">
 				<li><a href="${pageContext.request.contextPath}/Register"><span class="glyphicon glyphicon-user"></span>
 						Sign Up</a></li>

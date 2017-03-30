@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-
 import com.niit.shopping.dao.CategoryDao;
 import com.niit.shopping.dao.ProductDao;
 import com.niit.shopping.model.Category;
@@ -97,6 +96,29 @@ public class ProductController {
       
             
     }  
-	
+	@RequestMapping(value="/editsave",method = RequestMethod.POST)  
+	public ModelAndView editsave(@ModelAttribute("product") Product product){  
+		productDao.updateProduct(product);
+	    return new ModelAndView("redirect:/AdminViewProduct");  
+	}  
+ 
+	@RequestMapping(value="/deleteProduct/{id}",method = RequestMethod.POST)  
+	public ModelAndView delete(@PathVariable int id){ 
+		System.out.println("delete is called");
+	   productDao.deleteProduct(id);
+	    return new ModelAndView("redirect:/AdminViewProduct");  
+	}
+
+	@RequestMapping(value="/editProduct/{id}")  
+	public ModelAndView edit(@PathVariable int id){  
+	    Product product=productDao.getProductById(id);  
+	    return new ModelAndView("AdminEditProduct","command",product);  
+	}
+	@RequestMapping("/AdminEditProduct")
+	public ModelAndView AdminEditProduct(){  
+	    List<Product> list=productDao.getAllProduct();
+	    return new ModelAndView("redirect:/AdminViewProduct");  
+	}  
+
 
 }
