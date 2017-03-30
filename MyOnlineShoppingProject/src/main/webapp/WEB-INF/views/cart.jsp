@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <head>
 
   <title>Home Page</title>
@@ -8,33 +9,27 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-MfvZlkHCEqatNoGiOXveE8FIwMzZg4W85qfrfIFBfYc= sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
-
+<link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>    
-   <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-   <%@ page isELIgnored="false" %>
+<%@ page isELIgnored="false" %>
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ include  file="header.jsp" %>
-       </body>
-  <div class="container">
-<h1>Product List</h1>  
-<table border="2" width="70%" cellpadding="2">  
-<tr><th>Product ID</th><th>Product Name</th><th>Product Price</th><th>Product Image</th></tr>  
-    
-   <tr>  
-   <td>${product.productId}</td>  
-   <td>${product.productName}</td>  
-   <td>${product.productPrice}</td>
-    <td><img src="<c:url value="${pageContext.request.contextPath}/${product.productImage}" />"></td>
- </tr>  
-   
-   </table>  
-    <br/>
-    <a href="${pageContext.request.contextPath}/cart/addItem/${productId}"><input type="submit" value="Add To Cart"/></a>
-    </div>
-    </body>
-    </html>
+<div class="container">
+<c:forEach items="${list}" var="cart">
+<table>
+<tr><th>Product Name</th><th>Product Price</th><th>Quantity</th><th>Sub Total</th></tr>
+<tr><td>${cart.productName}</td>
+<td>${cart.productPrice}</td>
+<td>${cart.quantity}</td>
+<td>${cart.subTotal}</td></tr>
+
+</table>
+
+</c:forEach>
+</div>
+</body>
+</html>

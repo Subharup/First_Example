@@ -22,6 +22,14 @@ public class CartItem implements Serializable {
 	@JoinColumn(name="cartId")
 	Cart cart;
 	private int quantity;
+	private String status;
+	
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
 	public int getQuantity() {
 		return quantity;
 	}

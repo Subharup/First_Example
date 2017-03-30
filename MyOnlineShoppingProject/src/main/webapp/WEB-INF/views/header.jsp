@@ -16,7 +16,7 @@
 				<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#">OnlineShopping.com</a>
+			<a class="navbar-brand" href="home">OnlineShopping.com</a>
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
@@ -46,7 +46,7 @@
 
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-			<li><a href="#" class="btn btn-info btn-lg">
+			<li><a href="showCartDetails" class="btn btn-info btn-lg">
           <span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart
         </a>
       </p> 

@@ -2,6 +2,7 @@ package com.niit.shopping.dao;
 
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,8 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.niit.shopping.model.CartItem;
+import com.niit.shopping.model.Product;
+import com.niit.shopping.model.User;
 @Repository("cartItemDao")
 @Transactional
 
@@ -46,10 +49,21 @@ public class CartItemDaoImpl implements CartItemDao {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	public List<CartItem> getCartItemByCartId(String cartId) {
+		Session session = getSession();
 
-	public List<CartItem> getCartItemByUserId(String userId) {
-		// TODO Auto-generated method stub
-		return null;
+		Query query = session.createQuery("from CartItem where cartItemId=?");
+		
+		query.setString(0, cartId);
+	List<CartItem> cartItem = query.list();
+	
+	if (cartItem!=null &&  ! cartItem.isEmpty())
+	
+
+		return (List<CartItem>) cartItem.get(0);
+	
+	else return null;
 	}
 
+	
 }

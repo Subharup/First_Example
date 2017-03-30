@@ -3,6 +3,7 @@ import java.util.List;
 
 
 import com.niit.shopping.model.*;
+
 public interface ProductDao {
 
 	List<Product>   getProductBySubCategory(int subCategoruId);

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+
 import com.niit.shopping.model.User;
 @Repository("userDao")
 @Transactional
@@ -25,9 +26,9 @@ public class UserDaoImpl implements UserDao {
 		Session session = getSession();
 
 		Query query = session.createQuery("from User");
-		List<User> productList = query.list();
+		List<User> List1 = query.list();
 
-		return productList;
+		return List1;
 
 	}
 
@@ -43,6 +44,26 @@ public class UserDaoImpl implements UserDao {
 
 		session.close();
 
+	}
+	public User getUsersById(String id) {
+		Session session = getSession();
+
+		Query query = session.createQuery("from User where Id=?");
+		
+		query.setString(0, id);
+	List<User> user = query.list();
+	
+	if (user!=null &&  ! user.isEmpty())
+	
+
+		return user.get(0);
+	
+	else return null;
+
+	}
+	public void editUsers(User user) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	
