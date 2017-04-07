@@ -23,13 +23,14 @@
   <div class="container">
 <h1>Product List</h1>  
 <table border="2" width="70%" cellpadding="2">  
-<tr><th>Product ID</th><th>Product Name</th><th>Product Price</th><th>Product Image</th></tr>  
+<tr><th>Product Image</th><th>Product Name</th><th>Product Price</th></tr>  
     
-   <tr>  
-   <td>${product.productId}</td>  
+   <tr>
+   <td><img src="${pageContext.request.contextPath}/${product.productImage}" ></td>  
+    
    <td>${product.productName}</td>  
    <td>${product.productPrice}</td>
-    <td><img src="<c:url value="${pageContext.request.contextPath}/${product.productImage}" />"></td>
+    
  </tr>  
    
    </table>  

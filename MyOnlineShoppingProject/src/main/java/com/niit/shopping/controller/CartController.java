@@ -33,10 +33,6 @@ public class CartController {
 	  ProductDao productDao;
 	  @Autowired
 	  CartItemDao cartItemDao;
-	@RequestMapping("/register")  
-    public ModelAndView showform(){  
-        return new ModelAndView("RegisterDemo","command",new User());  
-    } 
 	
 	
    @RequestMapping(value="/saveUser",method = RequestMethod.POST)  
@@ -50,7 +46,7 @@ public class CartController {
 		user.setCart(cart);
 		
     	userDao.addUser(user);
-        return new ModelAndView("redirect:/home");
+        return new ModelAndView("redirect:/registerSuccess");
     }
    @RequestMapping(value="/cartItem",method = RequestMethod.POST)  
    public ModelAndView CartItem(@ModelAttribute("cartItem") CartItem cartItem){
@@ -61,8 +57,14 @@ public class CartController {
      	
    }
    
-   @RequestMapping("/showCartDetails")
-   public ModelAndView showCartDetails(HttpSession session,Principal user) {
+   @RequestMapping("/cart")
+	public ModelAndView cart(){
+		ModelAndView cart=new ModelAndView("cart");
+		return cart;
+	}
+   
+   @RequestMapping("/cart/showCart")
+   public ModelAndView showCart(HttpSession session,Principal user) {
    		 
    		 String id=user.getName();
    		 
@@ -100,7 +102,7 @@ public class CartController {
    @RequestMapping("/cart/addItem/{productId}")
 	 public ModelAndView addItemToCart(@PathVariable int productId, Principal principal, HttpSession session){
 		 
-	   ModelAndView mv = new ModelAndView("redirect:/cart/showCartDetails");
+	   ModelAndView mv = new ModelAndView("redirect:/cart/showCart");
 		 String id = principal.getName();
 		 System.out.println("logged in user "+id);
 		 Product product = productDao.getProductByProductId(productId);
@@ -160,6 +162,27 @@ public class CartController {
 		 
 	 }
 	
-   
+   @RequestMapping(value="/deleteItems/{cartItemId}",method = RequestMethod.GET)  
+	public ModelAndView deleteItems(@PathVariable Integer cartItemId ,Principal user, HttpSession session){ 
+	   
+	   
+	   User u=userDao.getUsersById(user.getName());
+		
+		 Cart c=u.getCart();
+		 
+		 List<CartItem>  list=c.getCartItems();
+		 System.out.println("Items :" +list);
+		 
+		 CartItem item=cartItemDao.get(cartItemId);
+		 
+		 System.out.println("Items are"+item);
+		
+		 list.remove(item);
+	   
+		System.out.println("delete is called");
+	   cartItemDao.deleteItems(cartItemId);
+	    return new ModelAndView("redirect:/cart/showCart");  
+	}
+
    
 }

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Case</title>
+  <title>Add Product</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -18,18 +18,18 @@
 <div class="container">
   <form:form method="post" action="AdminAddProductController" enctype="multipart/form-data"> 
 
-<table>
+<table border="1">
 <tr>
-<td>Product Id </td></tr>
-<tr>
-<td>Product Name <form:input path="productName"  /></td></tr>
-<tr><td>Product Price <form:input path="productPrice"  /></td></tr>
-<tr><td><form:hidden path="productImage"/></td></tr>  
-<tr>
+
+
+<td>Product Name <form:input path="productName"  /></td>
+<td>Product Price <form:input path="productPrice"  /></td>
+<td><form:hidden path="productImage"/></td>  
+
 	<td>Choose Image</td>
 	<td><input type="file" name="file"/></td>
-	</tr>
-	<tr><td><input type="submit" value="save"></td></tr>
+	
+	<td><input type="submit" value="save"></td></tr>
 	</table>
 </form:form>
 </div>

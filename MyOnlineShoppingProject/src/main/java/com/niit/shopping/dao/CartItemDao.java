@@ -9,8 +9,9 @@ public boolean saveOrUpdate(CartItem cartItem);
 	
 	public boolean delete(CartItem cartItem);
 	
-	public CartItem get(String cartItemId);
+	public CartItem get(Integer cartItemId);
 	
 	public List<CartItem> getCartItemByCartId(String cartId);
+	public void deleteItems(int cartItemId);
 	
 }

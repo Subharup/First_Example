@@ -20,13 +20,15 @@
 <%@ include  file="header.jsp" %>
 <div class="container">
 <c:forEach items="${list}" var="cart">
-<table>
-<tr><th>Product Name</th><th>Product Price</th><th>Quantity</th><th>Sub Total</th></tr>
-<tr><td>${cart.productName}</td>
-<td>${cart.productPrice}</td>
+<table border="2">
+<tr><th>Product Name</th><th>Product Price</th><th>Quantity</th><th>Sub Total</th><th>Product Image</th><th>Delete Product</th></tr>
+<tr><td>${cart.product.productName}</td>
+<td>${cart.product.productPrice}</td>
 <td>${cart.quantity}</td>
-<td>${cart.subTotal}</td></tr>
-
+<td>${cart.subTotal}</td>
+<td><img src="${pageContext.request.contextPath}/${cart.product.productImage}"></td>
+<td><a href="${pageContext.request.contextPath}/deleteItems/${cart.cartItemId}">Delete</a></td>
+</tr>
 </table>
 
 </c:forEach>

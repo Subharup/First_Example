@@ -16,12 +16,12 @@
 				<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="home">OnlineShopping.com</a>
+			<a class="navbar-brand">OnlineShopping.com</a>
 		</div>
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav">
 				<!-- each <li> </li> is one menu option -->
-				<li class="active"><a href="home">Home</a></li>
+				<li class="active"><a href="index">Home</a></li>
 
 				
 				
@@ -44,15 +44,36 @@
 					
 					
 
-			</ul>
+			
+			
+			<li class="active">
+			<c:if test="${pageContext.request.userPrincipal.name != null}">
+<li>Welcome ${pageContext.request.userPrincipal.name}</li>
+</c:if>
+</li>
+</ul>
 			<ul class="nav navbar-nav navbar-right">
-			<li><a href="showCartDetails" class="btn btn-info btn-lg">
+			
+			<li>
+			
+			<c:if test="${param.error == 'true'}">
+         <div style="color:red;margin:10px 0px;">
+          
+                You are not logged in
+                
+                 
+         </div>
+    </c:if>
+			
+			
+			
+			<a href="showCart" class="btn btn-info btn-lg">
           <span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart
         </a>
       </p> 
       </li>
 			<c:if test="${pageContext.request.userPrincipal.name == null}">
-				<li><a href="${pageContext.request.contextPath}/Register"><span class="glyphicon glyphicon-user"></span>
+				<li><a href="${pageContext.request.contextPath}/register"><span class="glyphicon glyphicon-user"></span>
 						Sign Up</a></li>
 						</c:if>
 		
@@ -75,6 +96,7 @@
 </nav>
 
 <div class="container">
+
 <security:authorize access="hasRole('ROLE_ADMIN')">
 
 					

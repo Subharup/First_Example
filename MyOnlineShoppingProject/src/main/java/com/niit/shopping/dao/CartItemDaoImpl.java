@@ -45,25 +45,35 @@ public class CartItemDaoImpl implements CartItemDao {
 		return false;
 	}
 
-	public CartItem get(String cartItemId) {
-		// TODO Auto-generated method stub
-		return null;
+	public CartItem get(Integer cartItemId) {
+		Session session = getSession();
+		
+		return (CartItem) session.get(CartItem.class, cartItemId);
 	}
 	public List<CartItem> getCartItemByCartId(String cartId) {
 		Session session = getSession();
 
-		Query query = session.createQuery("from CartItem where cartItemId=?");
+		Query query = session.createQuery("from CartItem where  cart.cartId=?");
 		
 		query.setString(0, cartId);
-	List<CartItem> cartItem = query.list();
-	
-	if (cartItem!=null &&  ! cartItem.isEmpty())
-	
+		List<CartItem> CartItemList = query.list();
 
-		return (List<CartItem>) cartItem.get(0);
-	
-	else return null;
+		return CartItemList;
 	}
 
-	
+	public void deleteItems(int cartItemId) {
+		Session session = getSession();
+
+		Query query = session.createQuery("from CartItem where cartItemId = ?");
+		query.setInteger(0, cartItemId);
+		CartItem c=(CartItem) query.uniqueResult();
+		session.delete(c);
+		session.flush();
+
+		session.close();
+
+		
+
+		
+	}
 }

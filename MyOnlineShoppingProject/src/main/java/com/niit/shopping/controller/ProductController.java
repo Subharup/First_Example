@@ -102,23 +102,19 @@ public class ProductController {
 	    return new ModelAndView("redirect:/AdminViewProduct");  
 	}  
  
-	@RequestMapping(value="/deleteProduct/{id}",method = RequestMethod.POST)  
-	public ModelAndView delete(@PathVariable int id){ 
+	@RequestMapping(value="/deleteProduct/{productId}")  
+	public ModelAndView delete(@PathVariable int productId){ 
 		System.out.println("delete is called");
-	   productDao.deleteProduct(id);
+	   productDao.deleteProduct(productId);
 	    return new ModelAndView("redirect:/AdminViewProduct");  
 	}
 
-	@RequestMapping(value="/editProduct/{id}")  
-	public ModelAndView edit(@PathVariable int id){  
-	    Product product=productDao.getProductById(id);  
+	@RequestMapping(value="/AdminEditProduct/{productId}")  
+	public ModelAndView edit(@PathVariable int productId){  
+	    Product product=productDao.getProductById(productId);  
 	    return new ModelAndView("AdminEditProduct","command",product);  
 	}
-	@RequestMapping("/AdminEditProduct")
-	public ModelAndView AdminEditProduct(){  
-	    List<Product> list=productDao.getAllProduct();
-	    return new ModelAndView("redirect:/AdminViewProduct");  
-	}  
+	  
 
 
 }

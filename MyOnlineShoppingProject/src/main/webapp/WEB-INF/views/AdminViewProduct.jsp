@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Case</title>
+  <title>View Products</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -16,7 +16,7 @@
 
   
 <div class="container">
-  <h1>Employees List</h1>  
+  <h1>Product List</h1>  
 <table border="2" width="70%" cellpadding="2">  
 <tr><th>Id</th><th>Name</th><th>Price</th><th>Image</th><th>Edit Product</th><th>Delete Product</th></tr>  
    <c:forEach var="product" items="${list1}">   
@@ -24,9 +24,9 @@
    <td>${product.productId}</td>  
    <td>${product.productName}</td>  
    <td>${product.productPrice}</td>  
-  <td>${product.productImage}</td>
-    <td><a href="editProduct/${user.userid}">Edit</a></td>  
-   <td><a href="deleteProduct/${user.userid}">Delete</a></td>
+  <td><img src="${pageContext.request.contextPath}/${product.productImage}"></td>
+    <td><a href="${pageContext.request.contextPath}/AdminEditProduct/${product.productId}">Edit</a></td>  
+   <td><a href="${pageContext.request.contextPath}/deleteProduct/${product.productId}">Delete</a></td>
    </tr>  
    </c:forEach>  
    </table>

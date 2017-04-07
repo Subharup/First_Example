@@ -112,4 +112,7 @@ public class ProductDaoImpl implements ProductDao {
 		Session session = getSession();
 		return (Product) session.get(Product.class, productId);
 	}
+
+
+
 }

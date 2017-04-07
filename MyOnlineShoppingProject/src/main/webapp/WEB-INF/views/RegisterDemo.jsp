@@ -15,27 +15,21 @@
         
           <tr> 
            <td>Name : </td>
-           <td><form:input path="name"  /></td>
+           <td><form:input path="id"  /></td>
           </tr>
           <tr>    
           <td>UserId : </td>
-           <td><form:input path="id"  /></td>
+           <td><form:input path="name"  /></td>
           </tr>
           <tr>    
           <td>Password : </td>
            <td><form:input path="password"  /></td>
           </tr>
-          <tr>    
-          <td>Role : </td>
-           <td><form:hidden path="role"  /></td>
-          </tr>
-          <tr>    
-          <td>Enabled : </td>
-           <td><form:hidden path="enabled"  /></td>
-          </tr>
+          
+         
 				 <tr>    
           <td> </td>    
-          <td><input type="submit"  value="Submit"/></td>    
+          <td><input type="submit"  value="Register"/></td>    
          </tr>  
           </table>
 			</form:form>

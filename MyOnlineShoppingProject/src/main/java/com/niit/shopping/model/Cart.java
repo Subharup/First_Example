@@ -20,7 +20,7 @@ public class Cart implements Serializable {
 	private Double grandTotal;
 	
 
-@OneToMany(mappedBy="cart",fetch=FetchType.EAGER,cascade=CascadeType.ALL)
+@OneToMany(mappedBy="cart",fetch=FetchType.LAZY,cascade=CascadeType.ALL)
 private List<CartItem> cartItems;
 public String getCartId() {
 	return cartId;

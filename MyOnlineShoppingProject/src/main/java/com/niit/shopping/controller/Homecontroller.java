@@ -2,6 +2,9 @@ package com.niit.shopping.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.niit.shopping.dao.CategoryDao;
 import com.niit.shopping.model.Category;
+import com.niit.shopping.model.User;
 
 @Controller 
 
@@ -18,25 +22,35 @@ public class Homecontroller {
 	CategoryDao categoryDao;
 
 @RequestMapping("/home")
-public ModelAndView Home(){
+public ModelAndView Home(HttpServletRequest  request,HttpSession session){
+	
+	session=request.getSession();
 	 List<Category> list=categoryDao.getAllCatagory();
+	 session.setAttribute("categoryList", list);
 	    return new ModelAndView("Home","categoryList",list);  
 }
 @RequestMapping("/index")
-public ModelAndView index(){
+public ModelAndView index(HttpServletRequest  request,HttpSession session){
+	
+	session=request.getSession();
 	 List<Category> list=categoryDao.getAllCatagory();
+	 session.setAttribute("categoryList", list);
 	    return new ModelAndView("Home","categoryList",list);  
 }
 
-@RequestMapping("/CartDetails")
-public ModelAndView CartDetails(){
-	ModelAndView CartDetails=new ModelAndView("CartDetails");
-	return CartDetails;
+@RequestMapping("registerSuccess")
+public ModelAndView RegisterSuccessfull(){
+	ModelAndView registerSuccess=new ModelAndView("RegisterSuccess");
+	return registerSuccess;
 }
 @RequestMapping(value = "/loginPage", method = RequestMethod.GET)
 public ModelAndView loginPage() {
 
 	return new ModelAndView("loginPage");
 }
+@RequestMapping("/register")  
+public ModelAndView showform(){  
+    return new ModelAndView("Register","command",new User());  
+} 
 
 }
