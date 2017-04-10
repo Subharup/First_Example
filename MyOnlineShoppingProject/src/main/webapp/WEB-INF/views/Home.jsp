@@ -85,8 +85,8 @@
                 <div class="col-lg-2  col-md-2 col-sm-4 col-xs-6">
                     <h3> Get To Know Us </h3>
                     <ul>
-                        <li> <a href="#"> About Us </a> </li>
-                        <li> <a href="#"> Contact Us </a> </li>
+                        <li> <a href="aboutUs"> About Us </a> </li>
+                        <li> <a href="contactUs"> Contact Us </a> </li>
                         <li> <a href="#"> Careers </a> </li>
                         <li> <a href="#"> Sell on OnlineShopping.com</a> </li>
                     </ul>
