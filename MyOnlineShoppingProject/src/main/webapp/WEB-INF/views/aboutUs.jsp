@@ -15,7 +15,7 @@
 <%@ include  file="header.jsp" %>
 
 <div class="container">
-
+<p>OnlineShopping.com is an Indian company that was founded on January 5, 2017, by Subharup Ghosh .OnlineShopping.com started as an online bookstore, later diversifying to sell DVDs, Blu-rays, CDs, video downloads/streaming, MP3 downloads/streaming, audiobook downloads/streaming, software, video games, electronics, apparel, furniture, food, toys, and jewelry. The company also produces consumer electronics notably, Kindle e-readers, Fire tablets, Fire TV is the world's largest provider of cloud infrastructure services.</p>
 </div>
 
 </body>
