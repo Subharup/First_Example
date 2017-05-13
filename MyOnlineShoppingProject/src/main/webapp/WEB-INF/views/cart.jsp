@@ -32,6 +32,7 @@
 </table>
 
 </c:forEach>
+<a href="${pageContext.request.contextPath}/billing"><input type="submit" value="Proceed to Check Out"/></a>
 </div>
 </body>
 </html>

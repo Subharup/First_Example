@@ -43,6 +43,8 @@ public ModelAndView RegisterSuccessfull(){
 	ModelAndView registerSuccess=new ModelAndView("RegisterSuccess");
 	return registerSuccess;
 }
+
+
 @RequestMapping(value = "/loginPage", method = RequestMethod.GET)
 public ModelAndView loginPage() {
 
@@ -52,5 +54,17 @@ public ModelAndView loginPage() {
 public ModelAndView showform(){  
     return new ModelAndView("Register","command",new User());  
 } 
+ 
+@RequestMapping("/billing")  
+public ModelAndView billing(){  
+	ModelAndView BillingThanking=new ModelAndView("redirect:/billingThanking");
+	return BillingThanking;
+  
+} 
+@RequestMapping("billingThanking")
+public ModelAndView BillingThanking(){
+	ModelAndView BillingThanking=new ModelAndView("BillingThanking");
+	return BillingThanking;
+}
 
 }

@@ -115,6 +115,5 @@ public class ProductController {
 	    return new ModelAndView("AdminEditProduct","command",product);  
 	}
 	  
-
-
+	
 }
