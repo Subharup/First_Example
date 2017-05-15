@@ -18,21 +18,22 @@ public class Billing implements Serializable {
 	public int getBillingId() {
 		return billingId;
 	}
+	public double getBillingAmount() {
+		return billingAmount;
+	}
+	public void setBillingAmount(double billingAmount) {
+		this.billingAmount = billingAmount;
+	}
 	public void setBillingId(int billingId) {
 		this.billingId = billingId;
 	}
-	private String billingName;
+	private double billingAmount;
 	private String billingAddress;
 	private int contactNumber;
 	@OneToOne
 	@JoinColumn(name="id")
 	User user;
-	public String getBillingName() {
-		return billingName;
-	}
-	public void setBillingName(String billingName) {
-		this.billingName = billingName;
-	}
+	
 	public String getBillingAddress() {
 		return billingAddress;
 	}

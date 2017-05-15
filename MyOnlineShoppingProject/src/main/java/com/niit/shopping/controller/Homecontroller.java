@@ -1,5 +1,6 @@
 package com.niit.shopping.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -7,19 +8,28 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.niit.shopping.dao.BillingDao;
 import com.niit.shopping.dao.CategoryDao;
+import com.niit.shopping.dao.UserDao;
+import com.niit.shopping.model.Cart;
 import com.niit.shopping.model.Category;
 import com.niit.shopping.model.User;
+import com.niit.shopping.model.Billing;;
 
 @Controller 
 
-public class Homecontroller {
+public class HomeController {
 	@Autowired
 	CategoryDao categoryDao;
+	@Autowired
+	BillingDao billingDao;
+	@Autowired
+	UserDao userDao;
 
 @RequestMapping("/home")
 public ModelAndView Home(HttpServletRequest  request,HttpSession session){
@@ -56,15 +66,28 @@ public ModelAndView showform(){
 } 
  
 @RequestMapping("/billing")  
-public ModelAndView billing(){  
-	ModelAndView BillingThanking=new ModelAndView("redirect:/billingThanking");
-	return BillingThanking;
-  
+public ModelAndView Billing(){  
+    return new ModelAndView("Billing","command",new Billing());  
 } 
 @RequestMapping("billingThanking")
 public ModelAndView BillingThanking(){
 	ModelAndView BillingThanking=new ModelAndView("BillingThanking");
 	return BillingThanking;
 }
-
+@RequestMapping(value="/billingUser",method = RequestMethod.POST)  
+public ModelAndView save(@ModelAttribute("billing") Billing billing ,Principal principal,HttpSession session ){  
+			
+	System.out.println("aaaaaaaaaaaaaaaaaaa");
+	String u=principal.getName();
+			double d=(Double)session.getAttribute("tot");
+			User user=userDao.getUsersById(u);
+			billing.setUser(user);
+			billing.setBillingAmount(d);
+			System.out.println("bbb"+billing.getContactNumber());
+			
+	//Billing billing=new Billing();
+	
+	billingDao.addBilling(billing);
+    return new ModelAndView("redirect:/billingThanking");
+}
 }

@@ -8,9 +8,11 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cglib.core.GeneratorStrategy;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.niit.shopping.model.Billing;
-
+@Repository("billingDao")
+@Transactional
 public class BillingDaoImpl implements BillingDao {
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -22,7 +24,7 @@ public class BillingDaoImpl implements BillingDao {
 	public void addBilling(Billing billing) {
 		// TODO Auto-generated method stub
 		Session session=getSession();
-		String Billing=billing.getBillingName();
+		
 		session.save(billing);
 		session.flush();
 		session.close();

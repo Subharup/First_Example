@@ -16,15 +16,14 @@
 
   
 <div class="container">
-  <form:form method="post" action="AdminAddProductController" enctype="multipart/form-data"> 
-
+  <form:form method="post" action="billingUser" > 
+  Tot   ${tot}
 <table border="1">
 <tr>
 
-
-<td>Enter Your Full Name <form:input path="billingName"  /></td></tr>
 <tr><td>Permanent Address <form:input path="billingAddress"  /></td></tr>
 <tr><td>Contact Number<form:input path="contactNumber"  /></td></tr>
+
  <tr><td><input type="submit" value="save"></td></tr>
 	</table>
 </form:form>
