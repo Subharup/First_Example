@@ -36,19 +36,7 @@ public class CartController {
 	  
 	
 	
-   @RequestMapping(value="/saveUser",method = RequestMethod.POST)  
-    public ModelAndView save(@ModelAttribute("user") User user){  
-		user.setRole("ROLE_USER");		
-		user.setEnabled(true);
-		Cart cart=new Cart();
-		
-		cartDao.saveOrUpdate(cart);
-		
-		user.setCart(cart);
-		
-    	userDao.addUser(user);
-        return new ModelAndView("redirect:/registerSuccess");
-    }
+   
    @RequestMapping(value="/cartItem",method = RequestMethod.POST)  
    public ModelAndView CartItem(@ModelAttribute("cartItem") CartItem cartItem){
 	   cartItem.setStatus("new");
@@ -126,7 +114,7 @@ public class CartController {
 			 cartItem.setProduct(product);
 			 cartItem.setQuantity(1);
 			 cartItem.setSubTotal(product.getProductPrice());
-			 cartItem.setStatus("new");
+			 cartItem.setStatus("N");
 			 cartItemDao.saveOrUpdate(cartItem);
 			 //updateCart(cartItem);
 			 session.setAttribute("cart", cartItem.getCart());
@@ -156,6 +144,7 @@ public class CartController {
 		 item.setProduct(product);
 		 item.setQuantity(1);
 		 item.setSubTotal(product.getProductPrice());
+		 item.setStatus("N");
 		 cartItemDao.saveOrUpdate(item);
 		// updateCart(item);
 		 session.setAttribute("cart", item.getCart());

@@ -20,9 +20,12 @@
 <%@ include  file="header.jsp" %>
 <div class="container">
 <c:set var="tot"  value="${0}" scope="session"/>
-<c:forEach items="${list}" var="cart">
+
+
 <table border="2">
 <tr><th>Product Name</th><th>Product Price</th><th>Quantity</th><th>Sub Total</th><th>Product Image</th><th>Delete Product</th></tr>
+<c:forEach items="${list}" var="cart">
+<c:if test="${cart.status=='N'}">
 <tr><td>${cart.product.productName}</td>
 <td>${cart.product.productPrice}</td>
 <td>${cart.quantity}</td>
@@ -33,9 +36,11 @@
 <td><img src="${pageContext.request.contextPath}/${cart.product.productImage}"></td>
 <td><a href="${pageContext.request.contextPath}/deleteItems/${cart.cartItemId}">Delete</a></td>
 </tr>
+</c:if>
+</c:forEach>
 </table>
 
-</c:forEach>
+
 Amount : ${tot}
 <a href="${pageContext.request.contextPath}/billing"><input type="submit" value="Proceed to Check Out"/></a>
 </div>

@@ -16,16 +16,16 @@ public class Cart implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private String cartId;
+	private int cartId;
 	private Double grandTotal;
 	
 
 @OneToMany(mappedBy="cart",fetch=FetchType.LAZY,cascade=CascadeType.ALL)
 private List<CartItem> cartItems;
-public String getCartId() {
+public int getCartId() {
 	return cartId;
 }
-public void setCartId(String cartId) {
+public void setCartId(int cartId) {
 	this.cartId = cartId;
 }
 public Double getGrandTotal() {

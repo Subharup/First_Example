@@ -50,12 +50,12 @@ public class CartItemDaoImpl implements CartItemDao {
 		
 		return (CartItem) session.get(CartItem.class, cartItemId);
 	}
-	public List<CartItem> getCartItemByCartId(String cartId) {
+	public List<CartItem> getCartItemByCartId(int cartId) {
 		Session session = getSession();
 
 		Query query = session.createQuery("from CartItem where  cart.cartId=?");
 		
-		query.setString(0, cartId);
+		query.setInteger(0, cartId);
 		List<CartItem> CartItemList = query.list();
 
 		return CartItemList;

@@ -11,7 +11,7 @@ public boolean saveOrUpdate(CartItem cartItem);
 	
 	public CartItem get(Integer cartItemId);
 	
-	public List<CartItem> getCartItemByCartId(String cartId);
+	public List<CartItem> getCartItemByCartId(int i);
 	public void deleteItems(int cartItemId);
 	
 }

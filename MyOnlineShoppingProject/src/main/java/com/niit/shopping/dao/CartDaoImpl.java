@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.niit.shopping.model.Cart;
+import com.niit.shopping.model.CartItem;
 @Repository("cartDao")
 @Transactional
 
@@ -70,6 +71,29 @@ String hql = "from Cart where user.userId=" + "'" + userId + "'";
 public void addCart(Cart cart) {
 	// TODO Auto-generated method stub
 	
+}
+
+public List<CartItem> getCartItemsByCartId(int cartId) {
+	String hql = "from CartItem where cart.cartId="  + cartId +" and status='N'" ;
+	
+	Session session = getSession();
+	Query query = session.createQuery(hql);
+	@SuppressWarnings("unchecked")
+	
+	List<CartItem> list = query.list();
+	
+	if(list == null || list.isEmpty())
+	{
+		session.flush();
+		session.close();
+		return null;
+	}
+	else
+	{
+		session.flush();
+		session.close();
+		return list;
+	}
 }
 
 }

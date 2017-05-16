@@ -14,9 +14,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.niit.shopping.dao.BillingDao;
+import com.niit.shopping.dao.CartDao;
+import com.niit.shopping.dao.CartItemDao;
 import com.niit.shopping.dao.CategoryDao;
 import com.niit.shopping.dao.UserDao;
 import com.niit.shopping.model.Cart;
+import com.niit.shopping.model.CartItem;
 import com.niit.shopping.model.Category;
 import com.niit.shopping.model.User;
 import com.niit.shopping.model.Billing;;
@@ -30,6 +33,10 @@ public class HomeController {
 	BillingDao billingDao;
 	@Autowired
 	UserDao userDao;
+	@Autowired
+	CartDao cartDao;
+	@Autowired
+	CartItemDao cartItemDao;
 
 @RequestMapping("/home")
 public ModelAndView Home(HttpServletRequest  request,HttpSession session){
@@ -81,6 +88,16 @@ public ModelAndView save(@ModelAttribute("billing") Billing billing ,Principal p
 	String u=principal.getName();
 			double d=(Double)session.getAttribute("tot");
 			User user=userDao.getUsersById(u);
+			int cart=user.getCart().getCartId();
+			List<CartItem>  items=cartDao.getCartItemsByCartId(cart);
+			
+			for(CartItem i:items)
+			{
+				i.setStatus("Y");
+				cartItemDao.saveOrUpdate(i);
+			}
+			
+			
 			billing.setUser(user);
 			billing.setBillingAmount(d);
 			System.out.println("bbb"+billing.getContactNumber());
